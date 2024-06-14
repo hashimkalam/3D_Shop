@@ -14,7 +14,7 @@ router.route("/").get((req, res) => {
   res.status(200).json({ message: "Hello from DALL.E Routes" });
 });
 
-router.route("/generate-image").post(async (req, res) => {
+router.route("/").post(async (req, res) => {
   try {
     const { prompt } = req.body;
 
@@ -22,7 +22,7 @@ router.route("/generate-image").post(async (req, res) => {
       return res.status(400).json({ error: "Prompt is required" });
     }
 
-    const response = await openai.images.create({
+    const response = await openai.createImage({
       prompt,
       n: 1,
       size: "1024x1024",
